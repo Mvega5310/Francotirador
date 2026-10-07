@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mercenario de Azotea — Prototipo</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Import map: "three" apunta al módulo local (sin depender de un CDN) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="viewport"></div>
+
+  <!-- Pantalla de carga (mientras se descarga el modelo humano) -->
+  <div id="loadingScreen">
+    <p>Cargando escena...</p>
+  </div>
+
+  <!-- Mira telescópica (oculta hasta hacer zoom) -->
+  <div id="scopeOverlay" class="hidden">
+    <div class="scope-crosshair"></div>
+  </div>
+
+  <!-- Punto de mira normal (sin zoom) -->
+  <div id="crosshair"></div>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div class="hud-row">
+      <span>Puntaje: <strong id="score">0</strong></span>
+      <span>Tiempo: <strong id="timeLeft">100</strong>s</span>
+    </div>
+    <div class="hud-row">
+      <span>Munición: <strong id="ammo">10</strong>/10</span>
+      <span>Viento: <strong id="wind">→ 0</strong></span>
+    </div>
+    <div class="hud-row">
+      <span>Casos resueltos: <strong id="casos">0 / 0 perdidos</strong></span>
+    </div>
+    <div class="hud-row strikes-row">
+      <span>Civiles heridos: <strong id="strikes">0 / 3</strong></span>
+    </div>
+    <div class="hud-row">
+      <label>Aliento</label>
+      <div class="bar-bg"><div id="breathBar" class="bar-fill"></div></div>
+    </div>
+  </div>
+
+  <div id="hint">
+    Regla de oro: si corre y carga algo, es el objetivo. Si camina con las manos
+    vacías, es un civil — no dispares.<br />
+    Clic en pantalla: capturar mouse · Clic izq: disparar · Clic der / Z: mira · Shift: contener aliento · R: recargar
+  </div>
+
+  <div id="gameOverScreen" class="hidden">
+    <h2>Ronda terminada</h2>
+    <p>Puntaje final: <strong id="finalScore">0</strong></p>
+    <button id="restartBtn">Reiniciar</button>
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
